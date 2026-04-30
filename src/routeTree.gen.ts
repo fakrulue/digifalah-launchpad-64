@@ -20,6 +20,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminLeadsRouteImport } from './routes/admin/leads'
+import { Route as AdminBuilderIndexRouteImport } from './routes/admin/builder/index'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -76,6 +77,11 @@ const AdminLeadsRoute = AdminLeadsRouteImport.update({
   path: '/admin/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminBuilderIndexRoute = AdminBuilderIndexRouteImport.update({
+  id: '/admin/builder/',
+  path: '/admin/builder/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/builder/': typeof AdminBuilderIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin': typeof AdminIndexRoute
+  '/admin/builder': typeof AdminBuilderIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/builder/': typeof AdminBuilderIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/leads'
     | '/admin/'
+    | '/admin/builder/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/leads'
     | '/admin'
+    | '/admin/builder'
   id:
     | '__root__'
     | '/'
@@ -157,6 +168,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/leads'
     | '/admin/'
+    | '/admin/builder/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,6 +183,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   AdminLeadsRoute: typeof AdminLeadsRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  AdminBuilderIndexRoute: typeof AdminBuilderIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/builder/': {
+      id: '/admin/builder/'
+      path: '/admin/builder'
+      fullPath: '/admin/builder/'
+      preLoaderRoute: typeof AdminBuilderIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -267,7 +287,17 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   AdminLeadsRoute: AdminLeadsRoute,
   AdminIndexRoute: AdminIndexRoute,
+  AdminBuilderIndexRoute: AdminBuilderIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
