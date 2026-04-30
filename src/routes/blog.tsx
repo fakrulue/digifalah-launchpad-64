@@ -21,7 +21,7 @@ export const Route = createFileRoute("/blog")({
 
 function BlogPage() {
   return (
-    <SiteLayout>
+    <SiteLayout pageSlug="blog">
       <section className="bg-gradient-hero py-20 text-primary-foreground">
         <div className="container mx-auto max-w-4xl px-4 text-center">
           <span className="text-xs font-bold uppercase tracking-wider text-gold">Insights</span>
