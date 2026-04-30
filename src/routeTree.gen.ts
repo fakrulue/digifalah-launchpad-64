@@ -20,6 +20,23 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminLeadsRouteImport } from './routes/admin/leads'
+import { Route as AdminSettingsIndexRouteImport } from './routes/admin/settings/index'
+import { Route as AdminSeoIndexRouteImport } from './routes/admin/seo/index'
+import { Route as AdminMediaIndexRouteImport } from './routes/admin/media/index'
+import { Route as AdminBuilderIndexRouteImport } from './routes/admin/builder/index'
+import { Route as AdminBlogIndexRouteImport } from './routes/admin/blog/index'
+import { Route as AdminSettingsUsersRouteImport } from './routes/admin/settings/users'
+import { Route as AdminSettingsKeysRouteImport } from './routes/admin/settings/keys'
+import { Route as AdminSettingsBackupRouteImport } from './routes/admin/settings/backup'
+import { Route as AdminSeoSitemapRouteImport } from './routes/admin/seo/sitemap'
+import { Route as AdminSeoMetaRouteImport } from './routes/admin/seo/meta'
+import { Route as AdminSeoKeywordsRouteImport } from './routes/admin/seo/keywords'
+import { Route as AdminMediaUploadRouteImport } from './routes/admin/media/upload'
+import { Route as AdminBuilderSlugRouteImport } from './routes/admin/builder/$slug'
+import { Route as AdminBlogNewRouteImport } from './routes/admin/blog/new'
+import { Route as AdminBlogCommentsRouteImport } from './routes/admin/blog/comments'
+import { Route as AdminBlogCategoriesRouteImport } from './routes/admin/blog/categories'
+import { Route as AdminBlogIdRouteImport } from './routes/admin/blog/$id'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -76,6 +93,91 @@ const AdminLeadsRoute = AdminLeadsRouteImport.update({
   path: '/admin/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminSettingsIndexRoute = AdminSettingsIndexRouteImport.update({
+  id: '/admin/settings/',
+  path: '/admin/settings/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoIndexRoute = AdminSeoIndexRouteImport.update({
+  id: '/admin/seo/',
+  path: '/admin/seo/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMediaIndexRoute = AdminMediaIndexRouteImport.update({
+  id: '/admin/media/',
+  path: '/admin/media/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminBuilderIndexRoute = AdminBuilderIndexRouteImport.update({
+  id: '/admin/builder/',
+  path: '/admin/builder/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminBlogIndexRoute = AdminBlogIndexRouteImport.update({
+  id: '/admin/blog/',
+  path: '/admin/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsUsersRoute = AdminSettingsUsersRouteImport.update({
+  id: '/admin/settings/users',
+  path: '/admin/settings/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsKeysRoute = AdminSettingsKeysRouteImport.update({
+  id: '/admin/settings/keys',
+  path: '/admin/settings/keys',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsBackupRoute = AdminSettingsBackupRouteImport.update({
+  id: '/admin/settings/backup',
+  path: '/admin/settings/backup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoSitemapRoute = AdminSeoSitemapRouteImport.update({
+  id: '/admin/seo/sitemap',
+  path: '/admin/seo/sitemap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoMetaRoute = AdminSeoMetaRouteImport.update({
+  id: '/admin/seo/meta',
+  path: '/admin/seo/meta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoKeywordsRoute = AdminSeoKeywordsRouteImport.update({
+  id: '/admin/seo/keywords',
+  path: '/admin/seo/keywords',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMediaUploadRoute = AdminMediaUploadRouteImport.update({
+  id: '/admin/media/upload',
+  path: '/admin/media/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminBuilderSlugRoute = AdminBuilderSlugRouteImport.update({
+  id: '/admin/builder/$slug',
+  path: '/admin/builder/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminBlogNewRoute = AdminBlogNewRouteImport.update({
+  id: '/admin/blog/new',
+  path: '/admin/blog/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminBlogCommentsRoute = AdminBlogCommentsRouteImport.update({
+  id: '/admin/blog/comments',
+  path: '/admin/blog/comments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminBlogCategoriesRoute = AdminBlogCategoriesRouteImport.update({
+  id: '/admin/blog/categories',
+  path: '/admin/blog/categories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminBlogIdRoute = AdminBlogIdRouteImport.update({
+  id: '/admin/blog/$id',
+  path: '/admin/blog/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +191,23 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/blog/$id': typeof AdminBlogIdRoute
+  '/admin/blog/categories': typeof AdminBlogCategoriesRoute
+  '/admin/blog/comments': typeof AdminBlogCommentsRoute
+  '/admin/blog/new': typeof AdminBlogNewRoute
+  '/admin/builder/$slug': typeof AdminBuilderSlugRoute
+  '/admin/media/upload': typeof AdminMediaUploadRoute
+  '/admin/seo/keywords': typeof AdminSeoKeywordsRoute
+  '/admin/seo/meta': typeof AdminSeoMetaRoute
+  '/admin/seo/sitemap': typeof AdminSeoSitemapRoute
+  '/admin/settings/backup': typeof AdminSettingsBackupRoute
+  '/admin/settings/keys': typeof AdminSettingsKeysRoute
+  '/admin/settings/users': typeof AdminSettingsUsersRoute
+  '/admin/blog/': typeof AdminBlogIndexRoute
+  '/admin/builder/': typeof AdminBuilderIndexRoute
+  '/admin/media/': typeof AdminMediaIndexRoute
+  '/admin/seo/': typeof AdminSeoIndexRoute
+  '/admin/settings/': typeof AdminSettingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +221,23 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin': typeof AdminIndexRoute
+  '/admin/blog/$id': typeof AdminBlogIdRoute
+  '/admin/blog/categories': typeof AdminBlogCategoriesRoute
+  '/admin/blog/comments': typeof AdminBlogCommentsRoute
+  '/admin/blog/new': typeof AdminBlogNewRoute
+  '/admin/builder/$slug': typeof AdminBuilderSlugRoute
+  '/admin/media/upload': typeof AdminMediaUploadRoute
+  '/admin/seo/keywords': typeof AdminSeoKeywordsRoute
+  '/admin/seo/meta': typeof AdminSeoMetaRoute
+  '/admin/seo/sitemap': typeof AdminSeoSitemapRoute
+  '/admin/settings/backup': typeof AdminSettingsBackupRoute
+  '/admin/settings/keys': typeof AdminSettingsKeysRoute
+  '/admin/settings/users': typeof AdminSettingsUsersRoute
+  '/admin/blog': typeof AdminBlogIndexRoute
+  '/admin/builder': typeof AdminBuilderIndexRoute
+  '/admin/media': typeof AdminMediaIndexRoute
+  '/admin/seo': typeof AdminSeoIndexRoute
+  '/admin/settings': typeof AdminSettingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +252,23 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/blog/$id': typeof AdminBlogIdRoute
+  '/admin/blog/categories': typeof AdminBlogCategoriesRoute
+  '/admin/blog/comments': typeof AdminBlogCommentsRoute
+  '/admin/blog/new': typeof AdminBlogNewRoute
+  '/admin/builder/$slug': typeof AdminBuilderSlugRoute
+  '/admin/media/upload': typeof AdminMediaUploadRoute
+  '/admin/seo/keywords': typeof AdminSeoKeywordsRoute
+  '/admin/seo/meta': typeof AdminSeoMetaRoute
+  '/admin/seo/sitemap': typeof AdminSeoSitemapRoute
+  '/admin/settings/backup': typeof AdminSettingsBackupRoute
+  '/admin/settings/keys': typeof AdminSettingsKeysRoute
+  '/admin/settings/users': typeof AdminSettingsUsersRoute
+  '/admin/blog/': typeof AdminBlogIndexRoute
+  '/admin/builder/': typeof AdminBuilderIndexRoute
+  '/admin/media/': typeof AdminMediaIndexRoute
+  '/admin/seo/': typeof AdminSeoIndexRoute
+  '/admin/settings/': typeof AdminSettingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +284,23 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/leads'
     | '/admin/'
+    | '/admin/blog/$id'
+    | '/admin/blog/categories'
+    | '/admin/blog/comments'
+    | '/admin/blog/new'
+    | '/admin/builder/$slug'
+    | '/admin/media/upload'
+    | '/admin/seo/keywords'
+    | '/admin/seo/meta'
+    | '/admin/seo/sitemap'
+    | '/admin/settings/backup'
+    | '/admin/settings/keys'
+    | '/admin/settings/users'
+    | '/admin/blog/'
+    | '/admin/builder/'
+    | '/admin/media/'
+    | '/admin/seo/'
+    | '/admin/settings/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +314,23 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/leads'
     | '/admin'
+    | '/admin/blog/$id'
+    | '/admin/blog/categories'
+    | '/admin/blog/comments'
+    | '/admin/blog/new'
+    | '/admin/builder/$slug'
+    | '/admin/media/upload'
+    | '/admin/seo/keywords'
+    | '/admin/seo/meta'
+    | '/admin/seo/sitemap'
+    | '/admin/settings/backup'
+    | '/admin/settings/keys'
+    | '/admin/settings/users'
+    | '/admin/blog'
+    | '/admin/builder'
+    | '/admin/media'
+    | '/admin/seo'
+    | '/admin/settings'
   id:
     | '__root__'
     | '/'
@@ -157,6 +344,23 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/leads'
     | '/admin/'
+    | '/admin/blog/$id'
+    | '/admin/blog/categories'
+    | '/admin/blog/comments'
+    | '/admin/blog/new'
+    | '/admin/builder/$slug'
+    | '/admin/media/upload'
+    | '/admin/seo/keywords'
+    | '/admin/seo/meta'
+    | '/admin/seo/sitemap'
+    | '/admin/settings/backup'
+    | '/admin/settings/keys'
+    | '/admin/settings/users'
+    | '/admin/blog/'
+    | '/admin/builder/'
+    | '/admin/media/'
+    | '/admin/seo/'
+    | '/admin/settings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,6 +375,23 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   AdminLeadsRoute: typeof AdminLeadsRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  AdminBlogIdRoute: typeof AdminBlogIdRoute
+  AdminBlogCategoriesRoute: typeof AdminBlogCategoriesRoute
+  AdminBlogCommentsRoute: typeof AdminBlogCommentsRoute
+  AdminBlogNewRoute: typeof AdminBlogNewRoute
+  AdminBuilderSlugRoute: typeof AdminBuilderSlugRoute
+  AdminMediaUploadRoute: typeof AdminMediaUploadRoute
+  AdminSeoKeywordsRoute: typeof AdminSeoKeywordsRoute
+  AdminSeoMetaRoute: typeof AdminSeoMetaRoute
+  AdminSeoSitemapRoute: typeof AdminSeoSitemapRoute
+  AdminSettingsBackupRoute: typeof AdminSettingsBackupRoute
+  AdminSettingsKeysRoute: typeof AdminSettingsKeysRoute
+  AdminSettingsUsersRoute: typeof AdminSettingsUsersRoute
+  AdminBlogIndexRoute: typeof AdminBlogIndexRoute
+  AdminBuilderIndexRoute: typeof AdminBuilderIndexRoute
+  AdminMediaIndexRoute: typeof AdminMediaIndexRoute
+  AdminSeoIndexRoute: typeof AdminSeoIndexRoute
+  AdminSettingsIndexRoute: typeof AdminSettingsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -252,6 +473,125 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/settings/': {
+      id: '/admin/settings/'
+      path: '/admin/settings'
+      fullPath: '/admin/settings/'
+      preLoaderRoute: typeof AdminSettingsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/': {
+      id: '/admin/seo/'
+      path: '/admin/seo'
+      fullPath: '/admin/seo/'
+      preLoaderRoute: typeof AdminSeoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/media/': {
+      id: '/admin/media/'
+      path: '/admin/media'
+      fullPath: '/admin/media/'
+      preLoaderRoute: typeof AdminMediaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/builder/': {
+      id: '/admin/builder/'
+      path: '/admin/builder'
+      fullPath: '/admin/builder/'
+      preLoaderRoute: typeof AdminBuilderIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/blog/': {
+      id: '/admin/blog/'
+      path: '/admin/blog'
+      fullPath: '/admin/blog/'
+      preLoaderRoute: typeof AdminBlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/settings/users': {
+      id: '/admin/settings/users'
+      path: '/admin/settings/users'
+      fullPath: '/admin/settings/users'
+      preLoaderRoute: typeof AdminSettingsUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/settings/keys': {
+      id: '/admin/settings/keys'
+      path: '/admin/settings/keys'
+      fullPath: '/admin/settings/keys'
+      preLoaderRoute: typeof AdminSettingsKeysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/settings/backup': {
+      id: '/admin/settings/backup'
+      path: '/admin/settings/backup'
+      fullPath: '/admin/settings/backup'
+      preLoaderRoute: typeof AdminSettingsBackupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/sitemap': {
+      id: '/admin/seo/sitemap'
+      path: '/admin/seo/sitemap'
+      fullPath: '/admin/seo/sitemap'
+      preLoaderRoute: typeof AdminSeoSitemapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/meta': {
+      id: '/admin/seo/meta'
+      path: '/admin/seo/meta'
+      fullPath: '/admin/seo/meta'
+      preLoaderRoute: typeof AdminSeoMetaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/keywords': {
+      id: '/admin/seo/keywords'
+      path: '/admin/seo/keywords'
+      fullPath: '/admin/seo/keywords'
+      preLoaderRoute: typeof AdminSeoKeywordsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/media/upload': {
+      id: '/admin/media/upload'
+      path: '/admin/media/upload'
+      fullPath: '/admin/media/upload'
+      preLoaderRoute: typeof AdminMediaUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/builder/$slug': {
+      id: '/admin/builder/$slug'
+      path: '/admin/builder/$slug'
+      fullPath: '/admin/builder/$slug'
+      preLoaderRoute: typeof AdminBuilderSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/blog/new': {
+      id: '/admin/blog/new'
+      path: '/admin/blog/new'
+      fullPath: '/admin/blog/new'
+      preLoaderRoute: typeof AdminBlogNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/blog/comments': {
+      id: '/admin/blog/comments'
+      path: '/admin/blog/comments'
+      fullPath: '/admin/blog/comments'
+      preLoaderRoute: typeof AdminBlogCommentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/blog/categories': {
+      id: '/admin/blog/categories'
+      path: '/admin/blog/categories'
+      fullPath: '/admin/blog/categories'
+      preLoaderRoute: typeof AdminBlogCategoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/blog/$id': {
+      id: '/admin/blog/$id'
+      path: '/admin/blog/$id'
+      fullPath: '/admin/blog/$id'
+      preLoaderRoute: typeof AdminBlogIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -267,7 +607,33 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   AdminLeadsRoute: AdminLeadsRoute,
   AdminIndexRoute: AdminIndexRoute,
+  AdminBlogIdRoute: AdminBlogIdRoute,
+  AdminBlogCategoriesRoute: AdminBlogCategoriesRoute,
+  AdminBlogCommentsRoute: AdminBlogCommentsRoute,
+  AdminBlogNewRoute: AdminBlogNewRoute,
+  AdminBuilderSlugRoute: AdminBuilderSlugRoute,
+  AdminMediaUploadRoute: AdminMediaUploadRoute,
+  AdminSeoKeywordsRoute: AdminSeoKeywordsRoute,
+  AdminSeoMetaRoute: AdminSeoMetaRoute,
+  AdminSeoSitemapRoute: AdminSeoSitemapRoute,
+  AdminSettingsBackupRoute: AdminSettingsBackupRoute,
+  AdminSettingsKeysRoute: AdminSettingsKeysRoute,
+  AdminSettingsUsersRoute: AdminSettingsUsersRoute,
+  AdminBlogIndexRoute: AdminBlogIndexRoute,
+  AdminBuilderIndexRoute: AdminBuilderIndexRoute,
+  AdminMediaIndexRoute: AdminMediaIndexRoute,
+  AdminSeoIndexRoute: AdminSeoIndexRoute,
+  AdminSettingsIndexRoute: AdminSettingsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

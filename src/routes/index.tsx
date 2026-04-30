@@ -55,7 +55,7 @@ const TESTIMONIALS = [
 
 function Index() {
   return (
-    <SiteLayout>
+    <SiteLayout pageSlug="home">
       {/* HERO */}
       <section className="relative overflow-hidden bg-gradient-hero text-primary-foreground">
         <div

@@ -2,7 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import {
   LayoutDashboard, FileText, PenSquare, Tags, MessageSquare,
   Search, BarChart3, Tag, Map, Image, Upload, Inbox, Settings,
-  Users, Database, Key, Sparkles, LogOut,
+  Users, Database, Key, Sparkles, LogOut, Wand2,
 } from "lucide-react";
 import {
   Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent,
@@ -16,6 +16,10 @@ const GROUPS = [
   {
     label: "Overview",
     items: [{ title: "Dashboard", url: "/admin", icon: LayoutDashboard }],
+  },
+  {
+    label: "Visual Builder",
+    items: [{ title: "Edit Pages", url: "/admin/builder", icon: Wand2 }],
   },
   {
     label: "Blog",
