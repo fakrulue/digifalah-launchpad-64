@@ -20,10 +20,14 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminLeadsRouteImport } from './routes/admin/leads'
+import { Route as AdminSettingsIndexRouteImport } from './routes/admin/settings/index'
 import { Route as AdminSeoIndexRouteImport } from './routes/admin/seo/index'
 import { Route as AdminMediaIndexRouteImport } from './routes/admin/media/index'
 import { Route as AdminBuilderIndexRouteImport } from './routes/admin/builder/index'
 import { Route as AdminBlogIndexRouteImport } from './routes/admin/blog/index'
+import { Route as AdminSettingsUsersRouteImport } from './routes/admin/settings/users'
+import { Route as AdminSettingsKeysRouteImport } from './routes/admin/settings/keys'
+import { Route as AdminSettingsBackupRouteImport } from './routes/admin/settings/backup'
 import { Route as AdminSeoSitemapRouteImport } from './routes/admin/seo/sitemap'
 import { Route as AdminSeoMetaRouteImport } from './routes/admin/seo/meta'
 import { Route as AdminSeoKeywordsRouteImport } from './routes/admin/seo/keywords'
@@ -89,6 +93,11 @@ const AdminLeadsRoute = AdminLeadsRouteImport.update({
   path: '/admin/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminSettingsIndexRoute = AdminSettingsIndexRouteImport.update({
+  id: '/admin/settings/',
+  path: '/admin/settings/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminSeoIndexRoute = AdminSeoIndexRouteImport.update({
   id: '/admin/seo/',
   path: '/admin/seo/',
@@ -107,6 +116,21 @@ const AdminBuilderIndexRoute = AdminBuilderIndexRouteImport.update({
 const AdminBlogIndexRoute = AdminBlogIndexRouteImport.update({
   id: '/admin/blog/',
   path: '/admin/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsUsersRoute = AdminSettingsUsersRouteImport.update({
+  id: '/admin/settings/users',
+  path: '/admin/settings/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsKeysRoute = AdminSettingsKeysRouteImport.update({
+  id: '/admin/settings/keys',
+  path: '/admin/settings/keys',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsBackupRoute = AdminSettingsBackupRouteImport.update({
+  id: '/admin/settings/backup',
+  path: '/admin/settings/backup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminSeoSitemapRoute = AdminSeoSitemapRouteImport.update({
@@ -176,10 +200,14 @@ export interface FileRoutesByFullPath {
   '/admin/seo/keywords': typeof AdminSeoKeywordsRoute
   '/admin/seo/meta': typeof AdminSeoMetaRoute
   '/admin/seo/sitemap': typeof AdminSeoSitemapRoute
+  '/admin/settings/backup': typeof AdminSettingsBackupRoute
+  '/admin/settings/keys': typeof AdminSettingsKeysRoute
+  '/admin/settings/users': typeof AdminSettingsUsersRoute
   '/admin/blog/': typeof AdminBlogIndexRoute
   '/admin/builder/': typeof AdminBuilderIndexRoute
   '/admin/media/': typeof AdminMediaIndexRoute
   '/admin/seo/': typeof AdminSeoIndexRoute
+  '/admin/settings/': typeof AdminSettingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -202,10 +230,14 @@ export interface FileRoutesByTo {
   '/admin/seo/keywords': typeof AdminSeoKeywordsRoute
   '/admin/seo/meta': typeof AdminSeoMetaRoute
   '/admin/seo/sitemap': typeof AdminSeoSitemapRoute
+  '/admin/settings/backup': typeof AdminSettingsBackupRoute
+  '/admin/settings/keys': typeof AdminSettingsKeysRoute
+  '/admin/settings/users': typeof AdminSettingsUsersRoute
   '/admin/blog': typeof AdminBlogIndexRoute
   '/admin/builder': typeof AdminBuilderIndexRoute
   '/admin/media': typeof AdminMediaIndexRoute
   '/admin/seo': typeof AdminSeoIndexRoute
+  '/admin/settings': typeof AdminSettingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -229,10 +261,14 @@ export interface FileRoutesById {
   '/admin/seo/keywords': typeof AdminSeoKeywordsRoute
   '/admin/seo/meta': typeof AdminSeoMetaRoute
   '/admin/seo/sitemap': typeof AdminSeoSitemapRoute
+  '/admin/settings/backup': typeof AdminSettingsBackupRoute
+  '/admin/settings/keys': typeof AdminSettingsKeysRoute
+  '/admin/settings/users': typeof AdminSettingsUsersRoute
   '/admin/blog/': typeof AdminBlogIndexRoute
   '/admin/builder/': typeof AdminBuilderIndexRoute
   '/admin/media/': typeof AdminMediaIndexRoute
   '/admin/seo/': typeof AdminSeoIndexRoute
+  '/admin/settings/': typeof AdminSettingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -257,10 +293,14 @@ export interface FileRouteTypes {
     | '/admin/seo/keywords'
     | '/admin/seo/meta'
     | '/admin/seo/sitemap'
+    | '/admin/settings/backup'
+    | '/admin/settings/keys'
+    | '/admin/settings/users'
     | '/admin/blog/'
     | '/admin/builder/'
     | '/admin/media/'
     | '/admin/seo/'
+    | '/admin/settings/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -283,10 +323,14 @@ export interface FileRouteTypes {
     | '/admin/seo/keywords'
     | '/admin/seo/meta'
     | '/admin/seo/sitemap'
+    | '/admin/settings/backup'
+    | '/admin/settings/keys'
+    | '/admin/settings/users'
     | '/admin/blog'
     | '/admin/builder'
     | '/admin/media'
     | '/admin/seo'
+    | '/admin/settings'
   id:
     | '__root__'
     | '/'
@@ -309,10 +353,14 @@ export interface FileRouteTypes {
     | '/admin/seo/keywords'
     | '/admin/seo/meta'
     | '/admin/seo/sitemap'
+    | '/admin/settings/backup'
+    | '/admin/settings/keys'
+    | '/admin/settings/users'
     | '/admin/blog/'
     | '/admin/builder/'
     | '/admin/media/'
     | '/admin/seo/'
+    | '/admin/settings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -336,10 +384,14 @@ export interface RootRouteChildren {
   AdminSeoKeywordsRoute: typeof AdminSeoKeywordsRoute
   AdminSeoMetaRoute: typeof AdminSeoMetaRoute
   AdminSeoSitemapRoute: typeof AdminSeoSitemapRoute
+  AdminSettingsBackupRoute: typeof AdminSettingsBackupRoute
+  AdminSettingsKeysRoute: typeof AdminSettingsKeysRoute
+  AdminSettingsUsersRoute: typeof AdminSettingsUsersRoute
   AdminBlogIndexRoute: typeof AdminBlogIndexRoute
   AdminBuilderIndexRoute: typeof AdminBuilderIndexRoute
   AdminMediaIndexRoute: typeof AdminMediaIndexRoute
   AdminSeoIndexRoute: typeof AdminSeoIndexRoute
+  AdminSettingsIndexRoute: typeof AdminSettingsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -421,6 +473,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/settings/': {
+      id: '/admin/settings/'
+      path: '/admin/settings'
+      fullPath: '/admin/settings/'
+      preLoaderRoute: typeof AdminSettingsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/seo/': {
       id: '/admin/seo/'
       path: '/admin/seo'
@@ -447,6 +506,27 @@ declare module '@tanstack/react-router' {
       path: '/admin/blog'
       fullPath: '/admin/blog/'
       preLoaderRoute: typeof AdminBlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/settings/users': {
+      id: '/admin/settings/users'
+      path: '/admin/settings/users'
+      fullPath: '/admin/settings/users'
+      preLoaderRoute: typeof AdminSettingsUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/settings/keys': {
+      id: '/admin/settings/keys'
+      path: '/admin/settings/keys'
+      fullPath: '/admin/settings/keys'
+      preLoaderRoute: typeof AdminSettingsKeysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/settings/backup': {
+      id: '/admin/settings/backup'
+      path: '/admin/settings/backup'
+      fullPath: '/admin/settings/backup'
+      preLoaderRoute: typeof AdminSettingsBackupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/seo/sitemap': {
@@ -536,10 +616,14 @@ const rootRouteChildren: RootRouteChildren = {
   AdminSeoKeywordsRoute: AdminSeoKeywordsRoute,
   AdminSeoMetaRoute: AdminSeoMetaRoute,
   AdminSeoSitemapRoute: AdminSeoSitemapRoute,
+  AdminSettingsBackupRoute: AdminSettingsBackupRoute,
+  AdminSettingsKeysRoute: AdminSettingsKeysRoute,
+  AdminSettingsUsersRoute: AdminSettingsUsersRoute,
   AdminBlogIndexRoute: AdminBlogIndexRoute,
   AdminBuilderIndexRoute: AdminBuilderIndexRoute,
   AdminMediaIndexRoute: AdminMediaIndexRoute,
   AdminSeoIndexRoute: AdminSeoIndexRoute,
+  AdminSettingsIndexRoute: AdminSettingsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
