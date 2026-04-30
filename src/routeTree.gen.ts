@@ -20,9 +20,12 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminLeadsRouteImport } from './routes/admin/leads'
+import { Route as AdminSeoIndexRouteImport } from './routes/admin/seo/index'
 import { Route as AdminMediaIndexRouteImport } from './routes/admin/media/index'
 import { Route as AdminBuilderIndexRouteImport } from './routes/admin/builder/index'
 import { Route as AdminBlogIndexRouteImport } from './routes/admin/blog/index'
+import { Route as AdminSeoKeywordsRouteImport } from './routes/admin/seo/keywords'
+import { Route as AdminMediaUploadRouteImport } from './routes/admin/media/upload'
 import { Route as AdminBuilderSlugRouteImport } from './routes/admin/builder/$slug'
 import { Route as AdminBlogNewRouteImport } from './routes/admin/blog/new'
 import { Route as AdminBlogCommentsRouteImport } from './routes/admin/blog/comments'
@@ -84,6 +87,11 @@ const AdminLeadsRoute = AdminLeadsRouteImport.update({
   path: '/admin/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminSeoIndexRoute = AdminSeoIndexRouteImport.update({
+  id: '/admin/seo/',
+  path: '/admin/seo/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminMediaIndexRoute = AdminMediaIndexRouteImport.update({
   id: '/admin/media/',
   path: '/admin/media/',
@@ -97,6 +105,16 @@ const AdminBuilderIndexRoute = AdminBuilderIndexRouteImport.update({
 const AdminBlogIndexRoute = AdminBlogIndexRouteImport.update({
   id: '/admin/blog/',
   path: '/admin/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoKeywordsRoute = AdminSeoKeywordsRouteImport.update({
+  id: '/admin/seo/keywords',
+  path: '/admin/seo/keywords',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMediaUploadRoute = AdminMediaUploadRouteImport.update({
+  id: '/admin/media/upload',
+  path: '/admin/media/upload',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminBuilderSlugRoute = AdminBuilderSlugRouteImport.update({
@@ -142,9 +160,12 @@ export interface FileRoutesByFullPath {
   '/admin/blog/comments': typeof AdminBlogCommentsRoute
   '/admin/blog/new': typeof AdminBlogNewRoute
   '/admin/builder/$slug': typeof AdminBuilderSlugRoute
+  '/admin/media/upload': typeof AdminMediaUploadRoute
+  '/admin/seo/keywords': typeof AdminSeoKeywordsRoute
   '/admin/blog/': typeof AdminBlogIndexRoute
   '/admin/builder/': typeof AdminBuilderIndexRoute
   '/admin/media/': typeof AdminMediaIndexRoute
+  '/admin/seo/': typeof AdminSeoIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -163,9 +184,12 @@ export interface FileRoutesByTo {
   '/admin/blog/comments': typeof AdminBlogCommentsRoute
   '/admin/blog/new': typeof AdminBlogNewRoute
   '/admin/builder/$slug': typeof AdminBuilderSlugRoute
+  '/admin/media/upload': typeof AdminMediaUploadRoute
+  '/admin/seo/keywords': typeof AdminSeoKeywordsRoute
   '/admin/blog': typeof AdminBlogIndexRoute
   '/admin/builder': typeof AdminBuilderIndexRoute
   '/admin/media': typeof AdminMediaIndexRoute
+  '/admin/seo': typeof AdminSeoIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -185,9 +209,12 @@ export interface FileRoutesById {
   '/admin/blog/comments': typeof AdminBlogCommentsRoute
   '/admin/blog/new': typeof AdminBlogNewRoute
   '/admin/builder/$slug': typeof AdminBuilderSlugRoute
+  '/admin/media/upload': typeof AdminMediaUploadRoute
+  '/admin/seo/keywords': typeof AdminSeoKeywordsRoute
   '/admin/blog/': typeof AdminBlogIndexRoute
   '/admin/builder/': typeof AdminBuilderIndexRoute
   '/admin/media/': typeof AdminMediaIndexRoute
+  '/admin/seo/': typeof AdminSeoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -208,9 +235,12 @@ export interface FileRouteTypes {
     | '/admin/blog/comments'
     | '/admin/blog/new'
     | '/admin/builder/$slug'
+    | '/admin/media/upload'
+    | '/admin/seo/keywords'
     | '/admin/blog/'
     | '/admin/builder/'
     | '/admin/media/'
+    | '/admin/seo/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -229,9 +259,12 @@ export interface FileRouteTypes {
     | '/admin/blog/comments'
     | '/admin/blog/new'
     | '/admin/builder/$slug'
+    | '/admin/media/upload'
+    | '/admin/seo/keywords'
     | '/admin/blog'
     | '/admin/builder'
     | '/admin/media'
+    | '/admin/seo'
   id:
     | '__root__'
     | '/'
@@ -250,9 +283,12 @@ export interface FileRouteTypes {
     | '/admin/blog/comments'
     | '/admin/blog/new'
     | '/admin/builder/$slug'
+    | '/admin/media/upload'
+    | '/admin/seo/keywords'
     | '/admin/blog/'
     | '/admin/builder/'
     | '/admin/media/'
+    | '/admin/seo/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -272,9 +308,12 @@ export interface RootRouteChildren {
   AdminBlogCommentsRoute: typeof AdminBlogCommentsRoute
   AdminBlogNewRoute: typeof AdminBlogNewRoute
   AdminBuilderSlugRoute: typeof AdminBuilderSlugRoute
+  AdminMediaUploadRoute: typeof AdminMediaUploadRoute
+  AdminSeoKeywordsRoute: typeof AdminSeoKeywordsRoute
   AdminBlogIndexRoute: typeof AdminBlogIndexRoute
   AdminBuilderIndexRoute: typeof AdminBuilderIndexRoute
   AdminMediaIndexRoute: typeof AdminMediaIndexRoute
+  AdminSeoIndexRoute: typeof AdminSeoIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -356,6 +395,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/seo/': {
+      id: '/admin/seo/'
+      path: '/admin/seo'
+      fullPath: '/admin/seo/'
+      preLoaderRoute: typeof AdminSeoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/media/': {
       id: '/admin/media/'
       path: '/admin/media'
@@ -375,6 +421,20 @@ declare module '@tanstack/react-router' {
       path: '/admin/blog'
       fullPath: '/admin/blog/'
       preLoaderRoute: typeof AdminBlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/keywords': {
+      id: '/admin/seo/keywords'
+      path: '/admin/seo/keywords'
+      fullPath: '/admin/seo/keywords'
+      preLoaderRoute: typeof AdminSeoKeywordsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/media/upload': {
+      id: '/admin/media/upload'
+      path: '/admin/media/upload'
+      fullPath: '/admin/media/upload'
+      preLoaderRoute: typeof AdminMediaUploadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/builder/$slug': {
@@ -432,9 +492,12 @@ const rootRouteChildren: RootRouteChildren = {
   AdminBlogCommentsRoute: AdminBlogCommentsRoute,
   AdminBlogNewRoute: AdminBlogNewRoute,
   AdminBuilderSlugRoute: AdminBuilderSlugRoute,
+  AdminMediaUploadRoute: AdminMediaUploadRoute,
+  AdminSeoKeywordsRoute: AdminSeoKeywordsRoute,
   AdminBlogIndexRoute: AdminBlogIndexRoute,
   AdminBuilderIndexRoute: AdminBuilderIndexRoute,
   AdminMediaIndexRoute: AdminMediaIndexRoute,
+  AdminSeoIndexRoute: AdminSeoIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
