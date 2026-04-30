@@ -21,6 +21,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminLeadsRouteImport } from './routes/admin/leads'
 import { Route as AdminBuilderIndexRouteImport } from './routes/admin/builder/index'
+import { Route as AdminBlogIndexRouteImport } from './routes/admin/blog/index'
+import { Route as AdminBuilderSlugRouteImport } from './routes/admin/builder/$slug'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -82,6 +84,16 @@ const AdminBuilderIndexRoute = AdminBuilderIndexRouteImport.update({
   path: '/admin/builder/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminBlogIndexRoute = AdminBlogIndexRouteImport.update({
+  id: '/admin/blog/',
+  path: '/admin/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminBuilderSlugRoute = AdminBuilderSlugRouteImport.update({
+  id: '/admin/builder/$slug',
+  path: '/admin/builder/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,6 +107,8 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/builder/$slug': typeof AdminBuilderSlugRoute
+  '/admin/blog/': typeof AdminBlogIndexRoute
   '/admin/builder/': typeof AdminBuilderIndexRoute
 }
 export interface FileRoutesByTo {
@@ -109,6 +123,8 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin': typeof AdminIndexRoute
+  '/admin/builder/$slug': typeof AdminBuilderSlugRoute
+  '/admin/blog': typeof AdminBlogIndexRoute
   '/admin/builder': typeof AdminBuilderIndexRoute
 }
 export interface FileRoutesById {
@@ -124,6 +140,8 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/builder/$slug': typeof AdminBuilderSlugRoute
+  '/admin/blog/': typeof AdminBlogIndexRoute
   '/admin/builder/': typeof AdminBuilderIndexRoute
 }
 export interface FileRouteTypes {
@@ -140,6 +158,8 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/leads'
     | '/admin/'
+    | '/admin/builder/$slug'
+    | '/admin/blog/'
     | '/admin/builder/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -154,6 +174,8 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/leads'
     | '/admin'
+    | '/admin/builder/$slug'
+    | '/admin/blog'
     | '/admin/builder'
   id:
     | '__root__'
@@ -168,6 +190,8 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/leads'
     | '/admin/'
+    | '/admin/builder/$slug'
+    | '/admin/blog/'
     | '/admin/builder/'
   fileRoutesById: FileRoutesById
 }
@@ -183,6 +207,8 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   AdminLeadsRoute: typeof AdminLeadsRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  AdminBuilderSlugRoute: typeof AdminBuilderSlugRoute
+  AdminBlogIndexRoute: typeof AdminBlogIndexRoute
   AdminBuilderIndexRoute: typeof AdminBuilderIndexRoute
 }
 
@@ -272,6 +298,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBuilderIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/blog/': {
+      id: '/admin/blog/'
+      path: '/admin/blog'
+      fullPath: '/admin/blog/'
+      preLoaderRoute: typeof AdminBlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/builder/$slug': {
+      id: '/admin/builder/$slug'
+      path: '/admin/builder/$slug'
+      fullPath: '/admin/builder/$slug'
+      preLoaderRoute: typeof AdminBuilderSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -287,6 +327,8 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   AdminLeadsRoute: AdminLeadsRoute,
   AdminIndexRoute: AdminIndexRoute,
+  AdminBuilderSlugRoute: AdminBuilderSlugRoute,
+  AdminBlogIndexRoute: AdminBlogIndexRoute,
   AdminBuilderIndexRoute: AdminBuilderIndexRoute,
 }
 export const routeTree = rootRouteImport
