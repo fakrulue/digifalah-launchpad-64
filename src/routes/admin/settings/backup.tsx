@@ -24,12 +24,21 @@ function Backups() {
   const run = async () => {
     setRunning(true);
     try {
-      const tables = ["page_blocks", "blog_posts", "blog_categories", "leads", "media_files", "seo_keywords", "seo_meta", "site_settings"];
       const dump: any = {};
-      for (const t of tables) {
-        const { data } = await supabase.from(t).select("*");
-        dump[t] = data;
-      }
+      const fetchAll = async (key: string, q: Promise<{ data: any }>) => {
+        const { data } = await q;
+        dump[key] = data;
+      };
+      await Promise.all([
+        fetchAll("page_blocks", supabase.from("page_blocks").select("*")),
+        fetchAll("blog_posts", supabase.from("blog_posts").select("*")),
+        fetchAll("blog_categories", supabase.from("blog_categories").select("*")),
+        fetchAll("leads", supabase.from("leads").select("*")),
+        fetchAll("media_files", supabase.from("media_files").select("*")),
+        fetchAll("seo_keywords", supabase.from("seo_keywords").select("*")),
+        fetchAll("seo_meta", supabase.from("seo_meta").select("*")),
+        fetchAll("site_settings", supabase.from("site_settings").select("*")),
+      ]);
       const blob = new Blob([JSON.stringify(dump, null, 2)], { type: "application/json" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
