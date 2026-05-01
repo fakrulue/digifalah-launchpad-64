@@ -1,5 +1,22 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { supabaseAdmin } from "@/integrations/supabase/client.server";
+
+const DEFAULT_MODEL = "google/gemini-2.5-flash";
+
+async function getConfiguredModel(): Promise<string> {
+  try {
+    const { data } = await supabaseAdmin
+      .from("site_settings")
+      .select("value")
+      .eq("key", "ai_model")
+      .maybeSingle();
+    const v = (data?.value as any)?.model;
+    return typeof v === "string" && v.length > 0 ? v : DEFAULT_MODEL;
+  } catch {
+    return DEFAULT_MODEL;
+  }
+}
 
 const inputSchema = z.object({
   topic: z.string().min(3).max(300),
@@ -35,6 +52,7 @@ Rules:
 - seo_description: under 155 chars
 Return ONLY valid JSON, no commentary.`;
 
+    const model = await getConfiguredModel();
     const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -42,7 +60,7 @@ Return ONLY valid JSON, no commentary.`;
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
+        model,
         messages: [
           { role: "system", content: sys },
           { role: "user", content: user },
@@ -62,4 +80,35 @@ Return ONLY valid JSON, no commentary.`;
     } catch {
       throw new Error("AI returned non-JSON response");
     }
+  });
+
+export const testAiConnection = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) =>
+    z.object({ model: z.string().min(3).max(100) }).parse(data),
+  )
+  .handler(async ({ data }) => {
+    const apiKey = process.env.LOVABLE_API_KEY;
+    if (!apiKey) throw new Error("LOVABLE_API_KEY missing");
+    const start = Date.now();
+    const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: data.model,
+        messages: [
+          { role: "system", content: "Reply with the single word: pong" },
+          { role: "user", content: "ping" },
+        ],
+      }),
+    });
+    const ms = Date.now() - start;
+    if (!res.ok) {
+      const text = await res.text();
+      if (res.status === 429) throw new Error("Rate limited (429). Try again in a moment.");
+      if (res.status === 402) throw new Error("Out of credits (402). Add credits in Settings → Workspace → Usage.");
+      throw new Error(`Gateway ${res.status}: ${text.slice(0, 200)}`);
+    }
+    const json = await res.json();
+    const reply = json.choices?.[0]?.message?.content ?? "";
+    return { ok: true, model: data.model, latencyMs: ms, reply };
   });
