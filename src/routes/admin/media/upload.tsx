@@ -28,18 +28,21 @@ function UploadPage() {
         const { error: upErr } = await supabase.storage.from("media").upload(path, file);
         if (upErr) throw upErr;
         const { data: pub } = supabase.storage.from("media").getPublicUrl(path);
-        await supabase.from("media_files").insert({
+        const { error: insErr } = await supabase.from("media_files").insert({
           filename: file.name, storage_path: path, url: pub.publicUrl,
           mime_type: file.type, size_bytes: file.size,
         });
+        if (insErr) throw insErr;
         done++; setProgress(Math.round((done / list.length) * 100));
       } catch (err: any) {
-        toast.error(`${file.name}: ${err.message}`);
+        toast.error(`${file.name}: ${err.message ?? "upload failed"}`);
       }
     }
     setUploading(false);
-    toast.success(`Uploaded ${done} file(s)`);
-    navigate({ to: "/admin/media" });
+    if (done > 0) {
+      toast.success(`Uploaded ${done} file(s)`);
+      navigate({ to: "/admin/media" });
+    }
   };
 
   return (
