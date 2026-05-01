@@ -13,7 +13,7 @@ import { testAiConnection } from "@/server/ai.functions";
 
 export const Route = createFileRoute("/admin/settings/ai")({
   head: () => ({ meta: [{ title: "AI Settings | DigiFalah Admin" }] }),
-  component: AISettings;
+  component: AISettings,
 });
 
 const MODELS = [
