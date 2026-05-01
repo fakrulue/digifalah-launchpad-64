@@ -54,6 +54,7 @@ const GROUPS = [
     label: "Settings",
     items: [
       { title: "General", url: "/admin/settings", icon: Settings },
+      { title: "AI / Gemini", url: "/admin/settings/ai", icon: Sparkles },
       { title: "Users & Roles", url: "/admin/settings/users", icon: Users },
       { title: "Backups", url: "/admin/settings/backup", icon: Database },
       { title: "API Keys", url: "/admin/settings/keys", icon: Key },
