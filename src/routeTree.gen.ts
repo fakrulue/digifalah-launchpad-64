@@ -28,6 +28,7 @@ import { Route as AdminBlogIndexRouteImport } from './routes/admin/blog/index'
 import { Route as AdminSettingsUsersRouteImport } from './routes/admin/settings/users'
 import { Route as AdminSettingsKeysRouteImport } from './routes/admin/settings/keys'
 import { Route as AdminSettingsBackupRouteImport } from './routes/admin/settings/backup'
+import { Route as AdminSettingsAiRouteImport } from './routes/admin/settings/ai'
 import { Route as AdminSeoSitemapRouteImport } from './routes/admin/seo/sitemap'
 import { Route as AdminSeoMetaRouteImport } from './routes/admin/seo/meta'
 import { Route as AdminSeoKeywordsRouteImport } from './routes/admin/seo/keywords'
@@ -133,6 +134,11 @@ const AdminSettingsBackupRoute = AdminSettingsBackupRouteImport.update({
   path: '/admin/settings/backup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminSettingsAiRoute = AdminSettingsAiRouteImport.update({
+  id: '/admin/settings/ai',
+  path: '/admin/settings/ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminSeoSitemapRoute = AdminSeoSitemapRouteImport.update({
   id: '/admin/seo/sitemap',
   path: '/admin/seo/sitemap',
@@ -200,6 +206,7 @@ export interface FileRoutesByFullPath {
   '/admin/seo/keywords': typeof AdminSeoKeywordsRoute
   '/admin/seo/meta': typeof AdminSeoMetaRoute
   '/admin/seo/sitemap': typeof AdminSeoSitemapRoute
+  '/admin/settings/ai': typeof AdminSettingsAiRoute
   '/admin/settings/backup': typeof AdminSettingsBackupRoute
   '/admin/settings/keys': typeof AdminSettingsKeysRoute
   '/admin/settings/users': typeof AdminSettingsUsersRoute
@@ -230,6 +237,7 @@ export interface FileRoutesByTo {
   '/admin/seo/keywords': typeof AdminSeoKeywordsRoute
   '/admin/seo/meta': typeof AdminSeoMetaRoute
   '/admin/seo/sitemap': typeof AdminSeoSitemapRoute
+  '/admin/settings/ai': typeof AdminSettingsAiRoute
   '/admin/settings/backup': typeof AdminSettingsBackupRoute
   '/admin/settings/keys': typeof AdminSettingsKeysRoute
   '/admin/settings/users': typeof AdminSettingsUsersRoute
@@ -261,6 +269,7 @@ export interface FileRoutesById {
   '/admin/seo/keywords': typeof AdminSeoKeywordsRoute
   '/admin/seo/meta': typeof AdminSeoMetaRoute
   '/admin/seo/sitemap': typeof AdminSeoSitemapRoute
+  '/admin/settings/ai': typeof AdminSettingsAiRoute
   '/admin/settings/backup': typeof AdminSettingsBackupRoute
   '/admin/settings/keys': typeof AdminSettingsKeysRoute
   '/admin/settings/users': typeof AdminSettingsUsersRoute
@@ -293,6 +302,7 @@ export interface FileRouteTypes {
     | '/admin/seo/keywords'
     | '/admin/seo/meta'
     | '/admin/seo/sitemap'
+    | '/admin/settings/ai'
     | '/admin/settings/backup'
     | '/admin/settings/keys'
     | '/admin/settings/users'
@@ -323,6 +333,7 @@ export interface FileRouteTypes {
     | '/admin/seo/keywords'
     | '/admin/seo/meta'
     | '/admin/seo/sitemap'
+    | '/admin/settings/ai'
     | '/admin/settings/backup'
     | '/admin/settings/keys'
     | '/admin/settings/users'
@@ -353,6 +364,7 @@ export interface FileRouteTypes {
     | '/admin/seo/keywords'
     | '/admin/seo/meta'
     | '/admin/seo/sitemap'
+    | '/admin/settings/ai'
     | '/admin/settings/backup'
     | '/admin/settings/keys'
     | '/admin/settings/users'
@@ -384,6 +396,7 @@ export interface RootRouteChildren {
   AdminSeoKeywordsRoute: typeof AdminSeoKeywordsRoute
   AdminSeoMetaRoute: typeof AdminSeoMetaRoute
   AdminSeoSitemapRoute: typeof AdminSeoSitemapRoute
+  AdminSettingsAiRoute: typeof AdminSettingsAiRoute
   AdminSettingsBackupRoute: typeof AdminSettingsBackupRoute
   AdminSettingsKeysRoute: typeof AdminSettingsKeysRoute
   AdminSettingsUsersRoute: typeof AdminSettingsUsersRoute
@@ -529,6 +542,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSettingsBackupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/settings/ai': {
+      id: '/admin/settings/ai'
+      path: '/admin/settings/ai'
+      fullPath: '/admin/settings/ai'
+      preLoaderRoute: typeof AdminSettingsAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/seo/sitemap': {
       id: '/admin/seo/sitemap'
       path: '/admin/seo/sitemap'
@@ -616,6 +636,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminSeoKeywordsRoute: AdminSeoKeywordsRoute,
   AdminSeoMetaRoute: AdminSeoMetaRoute,
   AdminSeoSitemapRoute: AdminSeoSitemapRoute,
+  AdminSettingsAiRoute: AdminSettingsAiRoute,
   AdminSettingsBackupRoute: AdminSettingsBackupRoute,
   AdminSettingsKeysRoute: AdminSettingsKeysRoute,
   AdminSettingsUsersRoute: AdminSettingsUsersRoute,
@@ -628,12 +649,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}
